@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "store")
@@ -28,4 +29,13 @@ public class Store {
     
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "store")
+    private List<Inventory> inventories;
+
+    @OneToMany(mappedBy = "store")
+    private List<Staff> staffList;
+
+    @OneToMany(mappedBy = "store")
+    private List<Customer> customers;
 }

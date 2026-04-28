@@ -13,17 +13,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class FilmCategory {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @EmbeddedId
+    private FilmCategoryId id;
     
     @ManyToOne
     @JoinColumn(name = "film_id", nullable = false)
+    @MapsId("filmId")
     private Film film;
     
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @MapsId("categoryId")
     private Category category;
     
     @Column(name = "last_update")

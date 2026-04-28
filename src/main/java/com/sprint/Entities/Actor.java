@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "actor")
@@ -26,4 +27,7 @@ public class Actor {
     
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "actor")
+    private List<FilmActor> filmActors;
 }

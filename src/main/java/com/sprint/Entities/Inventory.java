@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "inventory")
@@ -18,8 +19,9 @@ public class Inventory {
     @Column(name = "inventory_id")
     private Long inventoryId;
     
-    @Column(name = "film_id", nullable = false)
-    private Long filmId;
+    @ManyToOne
+    @JoinColumn(name = "film_id", nullable = false)
+    private Film film;
     
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
@@ -27,4 +29,7 @@ public class Inventory {
     
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "inventory")
+    private List<Rental> rentals;
 }

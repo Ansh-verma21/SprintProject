@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "address")
@@ -39,4 +40,10 @@ public class Address {
     
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "address")
+    private List<Staff> staffList;
+
+    @OneToMany(mappedBy = "address")
+    private List<Customer> customers;
 }

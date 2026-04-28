@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "film")
@@ -77,4 +78,13 @@ public class Film {
     @NotNull(message = "Last update is required")
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "film")
+    private List<Inventory> inventories;
+
+    @OneToMany(mappedBy = "film")
+    private List<FilmActor> filmActors;
+
+    @OneToMany(mappedBy = "film")
+    private List<FilmCategory> filmCategories;
 }

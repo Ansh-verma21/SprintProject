@@ -4,7 +4,7 @@ import org.springframework.data.rest.core.config.Projection;
 import com.sprint.Entities.Film;
 
 @Projection(name = "filmDetail", types = Film.class)
-public interface FilmProjection {
+public interface FilmLanguageProjection {
     
     Long getFilmId();
     

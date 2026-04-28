@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "language")
@@ -27,4 +28,10 @@ public class Language {
     @NotNull(message = "Last update is required")
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "language")
+    private List<Film> films;
+
+    @OneToMany(mappedBy = "originalLanguage")
+    private List<Film> originalLanguageFilms;
 }

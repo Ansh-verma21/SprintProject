@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -54,6 +55,12 @@ public class Customer {
 
     @Column(name = "last_update")
     private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Rental> rentals;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Payment> payments;
 
     @PrePersist
     public void prePersist() {
