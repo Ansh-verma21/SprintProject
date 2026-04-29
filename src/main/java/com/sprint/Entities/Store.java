@@ -43,4 +43,16 @@ public class Store {
     @JsonIgnore
     @OneToMany(mappedBy = "store")
     private List<Customer> customers;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.lastUpdate == null) {
+            this.lastUpdate = new Timestamp(System.currentTimeMillis());
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.lastUpdate = new Timestamp(System.currentTimeMillis());
+    }
 }

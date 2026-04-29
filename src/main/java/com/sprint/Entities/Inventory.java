@@ -32,4 +32,16 @@ public class Inventory {
 
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.lastUpdate == null) {
+            this.lastUpdate = new Timestamp(System.currentTimeMillis());
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.lastUpdate = new Timestamp(System.currentTimeMillis());
+    }
 }
