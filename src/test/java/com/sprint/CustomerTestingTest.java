@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class CustomerTesting {
+public class CustomerTestingTest {
 
     @Autowired
     private MockMvc mockMvc;
