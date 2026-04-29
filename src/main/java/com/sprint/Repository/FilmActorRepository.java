@@ -2,8 +2,6 @@ package com.sprint.Repository;
 
 import com.sprint.Entities.FilmActor;
 import com.sprint.Entities.FilmActorId;
-import com.sprint.Projections.ActorListProjection;
-import com.sprint.Projections.ActorFilmProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.repository.query.Param;
