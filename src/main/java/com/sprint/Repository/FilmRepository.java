@@ -1,7 +1,6 @@
 package com.sprint.Repository;
 
 import com.sprint.Entities.Film;
-import com.sprint.Projections.FilmNoProjection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(path = "films-custom")// IMPORTANT: custom path
+@RepositoryRestResource(path = "films-custom")
 public interface FilmRepository extends JpaRepository<Film, Long> {
 
     // 🔍 Filter by release year
