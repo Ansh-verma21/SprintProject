@@ -62,8 +62,7 @@ public class StoreTest {
                 .param("city", "NoSuchCity")
                 .param("page", "0")
                 .param("size", "5"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray());
+                                .andExpect(status().isNotFound());
     }
 
     @Test

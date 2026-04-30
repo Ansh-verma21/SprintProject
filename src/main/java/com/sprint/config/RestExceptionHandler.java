@@ -1,12 +1,14 @@
 package com.sprint.config;
 
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -46,6 +48,17 @@ public class RestExceptionHandler {
         body.put("message", "Malformed JSON request body");
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(body);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("error", "Not found");
+        body.put("message", ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(body);
     }

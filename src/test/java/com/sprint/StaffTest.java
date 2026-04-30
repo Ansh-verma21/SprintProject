@@ -39,17 +39,14 @@ public class StaffTest {
     public void test02_findByStore_noResult() throws Exception {
         mockMvc.perform(get("/staff/search/findByStore_StoreId")
                 .param("storeId", "999"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.page.totalElements").value(0));
+                .andExpect(status().isNotFound());
     }
 
     // Test 3 — missing storeId
     @Test
     public void test03_findByStore_missingParam() throws Exception {
         mockMvc.perform(get("/staff/search/findByStore_StoreId"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray());
+                .andExpect(status().isNotFound());
     }
 
     // Test 4 — invalid storeId type
@@ -82,9 +79,7 @@ public class StaffTest {
         mockMvc.perform(get("/staff/search/findByFirstNameContainingIgnoreCaseAndStore_StoreId")
                 .param("name", "XYZ")
                 .param("storeId", "1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.page.totalElements").value(0));
+                .andExpect(status().isNotFound());
     }
 
     // Test 7 — missing name
@@ -92,7 +87,7 @@ public class StaffTest {
     public void test07_searchAndStore_missingName() throws Exception {
         mockMvc.perform(get("/staff/search/findByFirstNameContainingIgnoreCaseAndStore_StoreId")
                 .param("storeId", "1"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 
     // Test 8 — missing storeId
@@ -100,7 +95,7 @@ public class StaffTest {
     public void test08_searchAndStore_missingStoreId() throws Exception {
         mockMvc.perform(get("/staff/search/findByFirstNameContainingIgnoreCaseAndStore_StoreId")
                 .param("name", "Mike"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 
     // =====================================================

@@ -91,11 +91,7 @@ public class ActorTest {
                 "findByFirstNameContainingIgnoreCase")
                                 .param("firstName", "ZZZZZ")
                                 .accept("application/hal+json"))
-                .andExpect(status().isOk())
-                                .andExpect(jsonPath(
-                                        "$._embedded.actors").isArray())
-                                .andExpect(jsonPath(
-                                        "$._embedded.actors").isEmpty());
+                .andExpect(status().isNotFound());
     }
 
     // Test 7

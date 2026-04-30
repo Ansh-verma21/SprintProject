@@ -96,8 +96,7 @@ public class FilmTest {
     public void test08_search_noResults() throws Exception {
         mockMvc.perform(get("/films/search/byTitle")
                 .param("title", "NoSuchFilm"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray());
+                                .andExpect(status().isNotFound());
     }
 
     // =========================

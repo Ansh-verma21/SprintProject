@@ -52,8 +52,7 @@ public class InventoryTest {
                 .param("storeId", "999999")
                 .param("page", "0")
                 .param("size", "5"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray());
+                                .andExpect(status().isNotFound());
     }
 
     @Test

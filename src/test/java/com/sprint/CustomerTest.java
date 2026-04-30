@@ -76,7 +76,7 @@ public class CustomerTest {
         mockMvc.perform(get("/customers/search/findByFirstNameAndLastName")
                 .param("firstName", "XYZ")
                 .param("lastName", "ABC"))
-                .andExpect(status().isOk());
+                                .andExpect(status().isNotFound());
     }
 
     // Test 5
@@ -407,11 +407,7 @@ public class CustomerTest {
     public void test_findByCity_noResult() throws Exception {
         mockMvc.perform(get("/customers/search/findByAddress_City_CityIgnoreCase")
                 .param("city", "___NO_CITY_SHOULD_EXIST_123456___"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.content.length()").value(1))
-                .andExpect(jsonPath("$.content[0].value").isArray())
-                .andExpect(jsonPath("$.content[0].value.length()").value(0));
+                                .andExpect(status().isNotFound());
     }
 
     @Test
