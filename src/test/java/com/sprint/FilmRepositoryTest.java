@@ -87,5 +87,23 @@ public class FilmRepositoryTest {
                 "ACA", "2006", PageRequest.of(0, 5));
         assertFalse(page.isEmpty());
     }
+
+    // =========================
+    // findByLanguage_LanguageId
+    // =========================
+
+    @Test
+    public void testFindByLanguage_LanguageId_success() {
+        Page<Film> page = filmRepository.findByLanguage_LanguageId(1L, PageRequest.of(0, 5));
+        assertFalse(page.isEmpty());
+        assertEquals(1L, page.getContent().get(0).getLanguage().getLanguageId());
+    }
+
+    @Test
+    public void testFindByLanguage_LanguageId_noResults() {
+        Page<Film> page = filmRepository.findByLanguage_LanguageId(999999L, PageRequest.of(0, 5));
+        assertTrue(page.isEmpty());
+    }
+
 }
 
